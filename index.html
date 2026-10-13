@@ -24,6 +24,7 @@
       --blob-3: #8fd3ff;
       --icon-1: linear-gradient(135deg, #ff7a45, #ff4d8d);
       --icon-2: linear-gradient(135deg, #0a66c2, #2f8be6);
+      --icon-3: linear-gradient(135deg, #14b8a6, #0e7490);
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -135,6 +136,7 @@
     .icon svg { width: 22px; height: 22px; }
     .i1 { background: var(--icon-1); }
     .i2 { background: var(--icon-2); }
+    .i3 { background: var(--icon-3); }
 
     .text { flex: 1; min-width: 0; }
     .title { display: block; font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
@@ -152,10 +154,6 @@
     .rise { opacity: 0; transform: translateY(10px); animation: rise .6s cubic-bezier(.2,.7,.2,1) forwards; }
     .d1 { animation-delay: .05s; } .d2 { animation-delay: .12s; } .d3 { animation-delay: .2s; } .d4 { animation-delay: .28s; } .d5 { animation-delay: .36s; }
     @keyframes rise { to { opacity: 1; transform: none; } }
-
-    footer { margin-top: 28px; font-size: .85rem; color: var(--muted); }
-    footer a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--card-border); transition: color .18s ease, border-color .18s ease; }
-    footer a:hover { color: var(--fg); border-color: currentColor; }
 
     @media (prefers-reduced-motion: reduce) {
       .bg span, .rise { animation: none; }
@@ -197,11 +195,20 @@
         </span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
       </a>
-    </nav>
 
-    <footer class="rise d5">
-      <a href="https://puffinship.com">Puffinship.com</a>
-    </footer>
+      <a class="link rise d5" href="https://puffinship.com">
+        <span class="icon i3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/>
+          </svg>
+        </span>
+        <span class="text">
+          <span class="title">Puffinship</span>
+          <span class="sub">puffinship.com</span>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </a>
+    </nav>
   </main>
 </body>
 </html>

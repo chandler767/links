@@ -24,7 +24,7 @@
       --blob-3: #8fd3ff;
       --icon-1: linear-gradient(135deg, #ff7a45, #ff4d8d);
       --icon-2: linear-gradient(135deg, #0a66c2, #2f8be6);
-      --icon-3: linear-gradient(135deg, #14b8a6, #0e7490);
+      --icon-3: linear-gradient(135deg, #18A8E0, #0A6E97);
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -137,6 +137,7 @@
     .i1 { background: var(--icon-1); }
     .i2 { background: var(--icon-2); }
     .i3 { background: var(--icon-3); }
+    .icon img { width: 28px; height: 28px; display: block; }
 
     .text { flex: 1; min-width: 0; }
     .title { display: block; font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
@@ -198,12 +199,10 @@
 
       <a class="link rise d5" href="https://puffinship.com">
         <span class="icon i3">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/>
-          </svg>
+          <img src="assets/puffin-mark.png" alt="" aria-hidden="true">
         </span>
         <span class="text">
-          <span class="title">Puffinship</span>
+          <span class="title">Puffin Ship</span>
           <span class="sub">puffinship.com</span>
         </span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>

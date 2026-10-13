@@ -4,79 +4,195 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Chandler Mayo</title>
-  <meta name="theme-color" content="#0f0f10">
+  <meta name="description" content="Chandler Mayo — links">
+  <meta name="theme-color" content="#f4f1ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0c0b10" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f7f7f8;
-      --fg: #111;
-      --muted: #666;
-      --card: #fff;
-      --border: #e3e3e6;
-      --accent: #111;
-      --accent-fg: #fff;
+      --bg: #f4f1ec;
+      --fg: #16151a;
+      --muted: #6b6873;
+      --card: rgba(255, 255, 255, 0.72);
+      --card-border: rgba(22, 21, 26, 0.08);
+      --card-hover: rgba(255, 255, 255, 0.95);
+      --shadow: 0 1px 2px rgba(22, 21, 26, .04), 0 8px 24px rgba(22, 21, 26, .06);
+      --blob-1: #ffb38a;
+      --blob-2: #b9a7ff;
+      --blob-3: #8fd3ff;
+      --icon-1: linear-gradient(135deg, #ff7a45, #ff4d8d);
+      --icon-2: linear-gradient(135deg, #0a66c2, #2f8be6);
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0f0f10;
-        --fg: #f2f2f3;
-        --muted: #9a9aa0;
-        --card: #1a1a1c;
-        --border: #2a2a2e;
-        --accent: #f2f2f3;
-        --accent-fg: #0f0f10;
+        --bg: #0c0b10;
+        --fg: #f3f2f6;
+        --muted: #9a97a3;
+        --card: rgba(255, 255, 255, 0.06);
+        --card-border: rgba(255, 255, 255, 0.09);
+        --card-hover: rgba(255, 255, 255, 0.1);
+        --shadow: 0 8px 30px rgba(0, 0, 0, .35);
+        --blob-1: #7a2e1a;
+        --blob-2: #3b2a80;
+        --blob-3: #10436b;
       }
     }
+
     * { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; }
+    html, body { min-height: 100%; margin: 0; }
     body {
       background: var(--bg);
       color: var(--fg);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: max(24px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
-      -webkit-font-smoothing: antialiased;
+      min-height: 100svh;
+      padding: max(32px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+      overflow-x: hidden;
+      position: relative;
     }
+
+    /* Soft drifting color blobs */
+    .bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+    .bg span {
+      position: absolute;
+      width: 60vmax; height: 60vmax;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .55;
+      animation: drift 22s ease-in-out infinite alternate;
+    }
+    .bg span:nth-child(1) { background: var(--blob-1); top: -25vmax; left: -20vmax; }
+    .bg span:nth-child(2) { background: var(--blob-2); bottom: -30vmax; right: -25vmax; animation-delay: -7s; }
+    .bg span:nth-child(3) { background: var(--blob-3); top: 30%; left: 40%; width: 40vmax; height: 40vmax; opacity: .35; animation-delay: -14s; }
+    @keyframes drift {
+      to { transform: translate(6vmax, 4vmax) scale(1.08); }
+    }
+
     main {
+      position: relative;
+      z-index: 1;
       width: 100%;
-      max-width: 420px;
+      max-width: 400px;
       text-align: center;
     }
-    h1 {
-      font-size: 1.75rem;
-      margin: 0 0 32px;
-      letter-spacing: -0.02em;
+
+    .avatar {
+      width: 88px; height: 88px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em;
+      color: #fff;
+      background: linear-gradient(135deg, #ff7a45 0%, #b65cff 55%, #3d8bff 100%);
+      box-shadow: 0 10px 30px rgba(182, 92, 255, .35), inset 0 0 0 3px rgba(255,255,255,.25);
     }
-    nav { display: grid; gap: 14px; }
-    a {
-      display: block;
-      padding: 18px 20px;
-      border-radius: 14px;
-      font-size: 1.1rem;
-      font-weight: 600;
+    h1 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin: 0;
+    }
+    .tagline {
+      margin: 6px 0 32px;
+      color: var(--muted);
+      font-size: .98rem;
+    }
+
+    nav { display: grid; gap: 12px; }
+    a.link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px 14px 14px;
+      border-radius: 18px;
+      text-align: left;
       text-decoration: none;
       color: var(--fg);
       background: var(--card);
-      border: 1px solid var(--border);
-      transition: transform .1s ease, opacity .1s ease;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
       -webkit-tap-highlight-color: transparent;
     }
-    a.primary {
-      background: var(--accent);
-      color: var(--accent-fg);
-      border-color: var(--accent);
+    a.link:hover { background: var(--card-hover); transform: translateY(-2px); }
+    a.link:active { transform: scale(.98); }
+    a.link:focus-visible { outline: 3px solid #7c6cff; outline-offset: 3px; }
+
+    .icon {
+      flex: none;
+      width: 46px; height: 46px;
+      border-radius: 13px;
+      display: grid; place-items: center;
+      color: #fff;
     }
-    a:active { transform: scale(0.98); opacity: .85; }
-    a:focus-visible { outline: 3px solid #4c8dff; outline-offset: 3px; }
+    .icon svg { width: 22px; height: 22px; }
+    .i1 { background: var(--icon-1); }
+    .i2 { background: var(--icon-2); }
+
+    .text { flex: 1; min-width: 0; }
+    .title { display: block; font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
+    .sub { display: block; color: var(--muted); font-size: .85rem; margin-top: 2px; }
+
+    .chev {
+      flex: none;
+      width: 18px; height: 18px;
+      color: var(--muted);
+      transition: transform .18s ease;
+    }
+    a.link:hover .chev { transform: translateX(3px); }
+
+    /* Entrance */
+    .rise { opacity: 0; transform: translateY(10px); animation: rise .6s cubic-bezier(.2,.7,.2,1) forwards; }
+    .d1 { animation-delay: .05s; } .d2 { animation-delay: .12s; } .d3 { animation-delay: .2s; } .d4 { animation-delay: .28s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bg span, .rise { animation: none; }
+      .rise { opacity: 1; transform: none; }
+    }
   </style>
 </head>
 <body>
+  <div class="bg" aria-hidden="true"><span></span><span></span><span></span></div>
+
   <main>
-    <h1>Chandler Mayo</h1>
+    <div class="avatar rise d1" aria-hidden="true">CM</div>
+    <h1 class="rise d1">Chandler Mayo</h1>
+    <p class="tagline rise d2">Great to meet you 👋</p>
+
     <nav>
-      <a class="primary" href="https://tessl.co/kn1">AI DevCon NYC</a>
-      <a href="https://www.linkedin.com/in/chandlermayo/">LinkedIn</a>
+      <a class="link rise d3" href="https://tessl.co/kn1">
+        <span class="icon i1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4.5" width="18" height="16" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/>
+          </svg>
+        </span>
+        <span class="text">
+          <span class="title">AI DevCon NYC</span>
+          <span class="sub">Get your ticket</span>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </a>
+
+      <a class="link rise d4" href="https://www.linkedin.com/in/chandlermayo/">
+        <span class="icon i2">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.95c0-1.18-.02-2.7-1.65-2.7-1.65 0-1.9 1.29-1.9 2.62V21h-4z"/>
+          </svg>
+        </span>
+        <span class="text">
+          <span class="title">LinkedIn</span>
+          <span class="sub">Let's connect</span>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </a>
     </nav>
   </main>
 </body>
